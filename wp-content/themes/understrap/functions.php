@@ -11,6 +11,17 @@ defined( 'ABSPATH' ) || exit;
 // UnderStrap's includes directory.
 $understrap_inc_dir = get_template_directory() . '/inc';
 
+function add_theme_scripts()
+{
+    // Slick js/css for image sliders, has jQuery has a dependency.
+    wp_enqueue_script('slick_js', get_template_directory_uri() . '/js/slick.min.js', array( 'jquery' ), 1.1, true);
+		wp_enqueue_style( 'slick_css', get_template_directory_uri() . '/css/slick-theme.css', array(), '1.1', 'all');
+    // Custom style contains mostly font pairs but also applies them to header and body text.
+		wp_enqueue_style( 'custom_style', get_template_directory_uri() . '/css/custom-style.css', array(), '1.1', 'all');
+}
+
+add_action('wp_enqueue_scripts', 'add_theme_scripts');
+
 // Array of files to include.
 $understrap_includes = array(
 	'/theme-settings.php',                  // Initialize theme default settings.
